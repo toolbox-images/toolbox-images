@@ -6,4 +6,6 @@ OpenSUSE provides [toolbox containers](https://registry.opensuse.org/cgi-bin/coo
 toolbox create --image registry.opensuse.org/opensuse/toolbox:latest --container opensuse
 ```
 
-should give you a Tumbleweed toolbox
+should give you a Tumbleweed toolbox.
+
+But sudo is not configured: you can do that with the `utils/setup-sudoers.sh` script.
