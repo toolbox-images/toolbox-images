@@ -9,6 +9,8 @@ if [ ! -f Dockerfile ]; then
     cd fedora-toolbox
     if [ -n "$1" -a "0$1" -lt 36 ]; then
         git switch f$VERSION
+    else
+        git switch rawhide
     fi
 fi
 podman pull fedora:$VERSION
