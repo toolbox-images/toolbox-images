@@ -3,11 +3,13 @@
 VERSION=${1:-36}
 
 if [ ! -f Dockerfile ]; then
-  git clone https://src.fedoraproject.org/container/fedora-toolbox.git
-  cd fedora-toolbox
-  if [ -n "$1" -a "$1" -lt 36 ]; then
-      git switch f$VERSION
-  fi
+    if [ ! -d fedora-toolbox ]; then
+        git clone https://src.fedoraproject.org/container/fedora-toolbox.git
+        cd fedora-toolbox
+    fi
+    if [ -n "$1" -a "0$1" -lt 36 ]; then
+        git switch f$VERSION
+    fi
 fi
 podman pull fedora:$VERSION
 # remove dnf clean
