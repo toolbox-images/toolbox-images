@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 VERSION=${1:-36}
 
@@ -18,5 +18,9 @@ podman pull fedora:$VERSION
 # todo: check if image exists
 buildah bud -t fedora-toolbox:$VERSION
 
-# todo: check if container exists
-toolbox create -i localhost/fedora-toolbox:$VERSION -c fedora-toolbox-$VERSION
+n=0
+while podman container exists fedora-toolbox-$VERSION$SUFFIX; do
+    ((n++))
+    SUFFIX=".$n"
+done
+toolbox create -i localhost/fedora-toolbox:$VERSION -c fedora-toolbox-$VERSION$SUFFIX
