@@ -33,6 +33,7 @@ podman pull $(grep FROM Dockerfile | sed -e 's/FROM //')
 # todo: check if image exists
 buildah bud -t fedora-toolbox:$VERSION
 
+set +e
 n=0
 while podman container exists fedora-toolbox-$VERSION$SUFFIX; do
     ((n++))
