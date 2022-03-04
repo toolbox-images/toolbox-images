@@ -39,4 +39,4 @@ while podman container exists fedora-toolbox-$VERSION$SUFFIX; do
     ((n++))
     SUFFIX=".$n"
 done
-toolbox create -i localhost/fedora-toolbox:$VERSION -c fedora-toolbox-$VERSION$SUFFIX
+toolbox create -i $(podman image list --filter reference=fedora-toolbox:$VERSION --format '{{.ID}}') -c fedora-toolbox-$VERSION$SUFFIX
