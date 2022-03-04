@@ -16,10 +16,11 @@ case $PWD in
     *)
         if [ ! -d fedora-toolbox ]; then
             git clone https://src.fedoraproject.org/container/fedora-toolbox.git
+            cd fedora-toolbox
         else
+            cd fedora-toolbox
             git pull
         fi
-        cd fedora-toolbox
         ;;
 esac
 if git rev-parse --quiet --verify origin/f$VERSION; then
