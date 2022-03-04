@@ -19,7 +19,7 @@ if [ ! -f Dockerfile ]; then
 else
     git pull
 fi
-if git rev-parse --quiet --verify f$VERSION; then
+if git rev-parse --quiet --verify origin/f$VERSION; then
     git switch f$VERSION
 else
     git switch rawhide
