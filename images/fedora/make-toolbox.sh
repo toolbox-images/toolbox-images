@@ -9,16 +9,19 @@ fi
 
 VERSION=$1
 
-if [ ! -f Dockerfile ]; then
-    if [ ! -d fedora-toolbox ]; then
-        git clone https://src.fedoraproject.org/container/fedora-toolbox.git
-    else
+case $PWD in
+    */fedora-toolbox)
         git pull
-    fi
-    cd fedora-toolbox
-else
-    git pull
-fi
+        ;;
+    *)
+        if [ ! -d fedora-toolbox ]; then
+            git clone https://src.fedoraproject.org/container/fedora-toolbox.git
+        else
+            git pull
+        fi
+        cd fedora-toolbox
+        ;;
+esac
 if git rev-parse --quiet --verify origin/f$VERSION; then
     git switch f$VERSION
 else
