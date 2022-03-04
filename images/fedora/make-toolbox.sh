@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 if [ $# -eq 0 ]; then
     echo "please specify fedora release number"
     exit 1
@@ -10,8 +12,12 @@ VERSION=$1
 if [ ! -f Dockerfile ]; then
     if [ ! -d fedora-toolbox ]; then
         git clone https://src.fedoraproject.org/container/fedora-toolbox.git
+    else
+        git pull
     fi
     cd fedora-toolbox
+else
+    git pull
 fi
 if git rev-parse --quiet --verify f$VERSION; then
     git switch f$VERSION
