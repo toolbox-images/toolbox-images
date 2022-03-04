@@ -24,7 +24,7 @@ if git rev-parse --quiet --verify f$VERSION; then
 else
     git switch rawhide
 fi
-podman pull fedora:$VERSION
+podman pull $(grep FROM Dockerfile | sed -e 's/FROM //')
 # remove dnf clean
 # todo: check if image exists
 buildah bud -t fedora-toolbox:$VERSION
